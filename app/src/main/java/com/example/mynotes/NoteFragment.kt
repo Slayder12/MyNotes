@@ -1,6 +1,5 @@
 package com.example.mynotes
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,7 +18,7 @@ import java.util.Locale
 class NoteFragment : Fragment() {
 
     private var dataBase: DBHelper? = null
-
+    private lateinit var onFragmentDataListener: OnFragmentDataListener
     private var adapter: CustomAdapter? = null
     private var notes: MutableList<Note> = mutableListOf()
     private val formatter = SimpleDateFormat("HH:mm dd.MM.yy", Locale.getDefault())
@@ -31,7 +30,6 @@ class NoteFragment : Fragment() {
 
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +40,8 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        onFragmentDataListener = requireActivity() as OnFragmentDataListener
 
         recyclerViewRV = view.findViewById(R.id.recyclerViewRV)
         val textNoteET = view.findViewById<EditText>(R.id.textNoteET)
@@ -67,8 +67,6 @@ class NoteFragment : Fragment() {
             textNoteET.text.clear()
             onResume()
         }
-
-
     }
 
     override fun onResume() {
@@ -77,15 +75,10 @@ class NoteFragment : Fragment() {
         adapter?.setOnItemClickListener(object :
             CustomAdapter.OnItemClickListener{
             override fun onItemClick(note: Note, position: Int) {
-                val dialog = MyDialog()
-                val args = Bundle()
-                args.putSerializable("note", note)
-                dialog.arguments = args
-                dialog.show(parentFragmentManager, "custom")
+                onFragmentDataListener.onData(note)
             }
         }
         )
-
     }
 
     private fun readData() {
@@ -93,13 +86,6 @@ class NoteFragment : Fragment() {
         adapter = CustomAdapter(notes, dataBase!!)
         recyclerViewRV.adapter = adapter
         recyclerViewRV.setHasFixedSize(true)
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun refreshData() {
-        readData()
-        adapter?.notifyDataSetChanged()
-        onResume()
     }
 
 }

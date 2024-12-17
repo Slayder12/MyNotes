@@ -21,7 +21,7 @@
                     android:id="@+id/displayNumberTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="№."
+                    android:hint="@string/num_text"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:layout_margin="2dp" />
@@ -30,7 +30,7 @@
                     android:id="@+id/displayTextTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Название:"
+                    android:hint="@string/hint_text"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:layout_margin="2dp"
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:hint="Дата"
+                    android:hint="@string/date_text"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     />

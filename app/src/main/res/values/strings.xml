@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">MyNotes</string>
     <string name="hello_blank_fragment"> Введите тест</string>
+    <string name="title_text">Мои заметки</string>
+    <string name="input_update_text">Введите техт</string>
+    <string name="delete_text">Удалить</string>
+    <string name="cancel_text">Отмена</string>
+    <string name="edit_text">Редактировать</string>
+    <string name="add_text">Добавить</string>
+    <string name="num_text">№.</string>
+    <string name="hint_text">текст</string>
+    <string name="date_text">дата</string>
 </resources>
